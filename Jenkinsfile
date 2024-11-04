@@ -15,7 +15,7 @@ pipeline {
         }
         stage('编译'){
             agent {
-                docker{image 'maven:3.6.1-jdk-8-alpine'}
+                docker { image 'maven:3.6.1-jdk-8-alpine' }
             }
             steps{
                 sh 'echo 开始'
@@ -24,7 +24,7 @@ pipeline {
                 sh 'ls -a'
             }
         }
-        stage('运行'){
+        stage('生成镜像'){
             steps{
                 sh 'echo 编译'
             }
