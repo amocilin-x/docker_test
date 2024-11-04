@@ -20,9 +20,9 @@ pipeline {
             steps{
                 sh 'echo 开始'
                 sh 'mvn -v'
-                sh 'mvn clean package'
+//                 sh 'mvn clean package'
                 sh 'ls -a'
-                sh 'cd /var/jenkins_home/appconfig/maven && /ls -a'
+                sh 'cd /var/jenkins_home/appconfig/maven && pwd && ls'
             }
         }
         stage('生成镜像'){
