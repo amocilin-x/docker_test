@@ -24,7 +24,7 @@ pipeline {
                 sh 'ls -a'
             }
         }
-        stage('编译'){
+        stage('运行'){
             steps{
                 sh 'echo 编译'
             }
