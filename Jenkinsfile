@@ -9,12 +9,19 @@ pipeline {
                 sh 'printenv'
                 sh 'echo $CC'
                 sh 'git -v'
-                sh 'java -v'
+                sh 'java -version'
+                sh 'pwd&&ls -la'
             }
         }
-        stage('开始'){
+        stage('编译'){
+            agent {
+                docker{image 'maven:3.6.1-jdk-8-alpine'}
+            }
             steps{
                 sh 'echo 开始'
+                sh 'mvn -v'
+                sh 'mvn clean package'
+                sh 'ls -a'
             }
         }
         stage('编译'){
