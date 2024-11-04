@@ -22,6 +22,7 @@ pipeline {
                 sh 'mvn -v'
                 sh 'mvn clean package'
                 sh 'ls -a'
+                sh 'cd /var/jenkins_home/appconfig/maven && /ls -a'
             }
         }
         stage('生成镜像'){
