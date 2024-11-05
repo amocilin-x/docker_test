@@ -16,13 +16,14 @@ pipeline {
         stage('编译'){
             agent {
                 docker { image 'maven:3.6.1-jdk-8-alpine' }
+                args '-v mavenRepo:/opt/repo'
             }
             steps{
                 sh 'echo 开始'
                 sh 'pwd'
                 sh 'mvn -v'
-                sh 'cd ${WR} && mvn clean package'
-                sh 'ls -a'
+                sh 'cd ${WR} && mvn  clean package -s "/var/jenkins_home/appconfig/maven/settings.xml" -Dmaven.test.skip=true'
+                sh 'ls -la'
             }
         }
         stage('运行测试'){
