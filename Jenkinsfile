@@ -1,13 +1,17 @@
+def createVersion() {
+    return new Date().format('yyyy-MM-dd HH:mm:ss') + "_${env.BUILD_ID}"
+}
 pipeline {
     agent any
     environment {
        WR = "$WORKSPACE"
+       time=createVersion()
     }
     stages {
         stage('环境检查') {
             steps {
                 sh 'echo $WR'
-                sh 'echo printenv'
+                sh 'printenv'
             }
         }
         stage('编译'){
@@ -36,8 +40,12 @@ pipeline {
         }
         stage('生成镜像'){
             steps{
+                def jenkinsTimeMillis = (new Date().getTime())
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                String formatted = format.format(jenkinsTimeMillis);
+
                 sh 'echo 开始生成镜像'
-                sh 'docker build -t docker_java:latest .'
+                sh 'docker build -t docker_java:formatted .'
             }
         }
 
@@ -45,7 +53,7 @@ pipeline {
             steps{
                 sh 'echo 开始部署'
                 sh 'docker rm -f docker_java'
-                sh 'docker run -d -p8378:8080 --name docker_java docker_java:latest'
+                sh 'docker run -d -p8378:8080 --name docker_java docker_java:${time}'
             }
         }
     }
