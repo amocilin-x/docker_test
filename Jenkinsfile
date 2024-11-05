@@ -1,5 +1,5 @@
 def createVersion() {
-    return new Date().format('yyyy-MM-dd HH:mm:ss') + "_${env.BUILD_ID}"
+    return new Date().format('yyyy-MM-ddHH:mm:ss')
 }
 pipeline {
     agent any
