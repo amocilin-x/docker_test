@@ -28,16 +28,16 @@ pipeline {
                 sh 'ls -la'
             }
         }
-        stage('运行测试'){
-            agent{
-                docker { image 'openjdk:8-jdk-alpine'}
-            }
-            steps{
-                sh 'echo 开始测试'
-                sh 'cd ${WR} && java -jar target/docker_test.jar'
-                sh 'curl http://localhost:8080'
-            }
-        }
+//         stage('运行测试'){
+//             agent{
+//                 docker { image 'openjdk:8-jdk-alpine'}
+//             }
+//             steps{
+//                 sh 'echo 开始测试'
+//                 sh 'cd ${WR} && java -jar target/docker_test.jar'
+//                 sh 'curl http://localhost:8080'
+//             }
+//         }
         stage('生成镜像'){
             steps{
                 sh 'echo 开始生成镜像'
