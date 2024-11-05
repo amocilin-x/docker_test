@@ -19,6 +19,7 @@ pipeline {
             }
             steps{
                 sh 'echo 开始'
+                sh 'pwd'
                 sh 'mvn -v'
 //                 sh 'mvn clean package'
                 sh 'ls -a'
