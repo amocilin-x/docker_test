@@ -6,11 +6,7 @@ pipeline {
     stages {
         stage('环境检查') {
             steps {
-                sh 'printenv'
                 sh 'echo $WR'
-                sh 'git -v'
-                sh 'java -version'
-                sh 'pwd&&ls -la'
             }
         }
         stage('编译'){
@@ -22,7 +18,6 @@ pipeline {
             }
             steps{
                 sh 'echo 开始'
-                sh 'pwd'
                 sh 'mvn -v'
                 sh 'cd ${WR} && mvn  clean package -s "/var/jenkins_home/appconfig/maven/settings.xml" -Dmaven.test.skip=true'
                 sh 'ls -la'
@@ -34,7 +29,7 @@ pipeline {
             }
             steps{
                 sh 'echo 开始测试'
-                sh 'cd ${WR} &&cd target  &&ls-al&& java -jar docker_test.jar'
+                sh 'cd ${WR} &&cd target  &&ls -al&& java -jar docker_test.jar'
                 sh 'curl http://localhost:8080'
             }
         }
