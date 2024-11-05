@@ -5,8 +5,10 @@
     <groupId>org.lianjingkeji</groupId>
     <artifactId>docker_test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>docker_test</name>
     <description>docker_test</description>
+
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

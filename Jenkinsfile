@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-       CC = 'clang'
+       WR = '${WORKSPACE}'
     }
     stages {
         stage('环境检查') {
@@ -21,14 +21,31 @@ pipeline {
                 sh 'echo 开始'
                 sh 'pwd'
                 sh 'mvn -v'
-//                 sh 'mvn clean package'
+                sh 'cd ${WR} && mvn clean package'
                 sh 'ls -a'
-                sh 'cd /var/jenkins_home/appconfig/maven && pwd && ls'
+            }
+        }
+        stage('运行测试'){
+            agent{
+                docker { image 'openjdk:8-jdk-alpine'}
+            }
+            steps{
+                sh 'echo 开始测试'
+                sh 'cd ${WR} && java -jar target/docker_test.jar'
+                sh 'curl http://localhost:8080'
             }
         }
         stage('生成镜像'){
             steps{
-                sh 'echo 编译'
+                sh 'echo 开始生成镜像'
+                sh 'docker build -t docker_java:latest .'
+            }
+        }
+        stage('部署'){
+            steps{
+                sh 'echo 开始部署'
+                sh 'docker rm -f docker_java'
+                sh 'docker run -d -p8080:8080 --name docker_java docker_java:latest'
             }
         }
     }
