@@ -40,7 +40,7 @@ public class BasicController {
     @ResponseBody
     public User user() {
         User user = new User();
-        user.setName("theonefx");
+        user.setName("theonefxdbcsbkaudvboaubdvoqabdjlca");
         user.setAge(666);
         return user;
     }
