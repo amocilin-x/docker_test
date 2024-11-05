@@ -42,6 +42,7 @@ pipeline {
                 sh 'docker build -t docker_java:latest .'
             }
         }
+
         stage('部署'){
             steps{
                 sh 'echo 开始部署'
