@@ -49,7 +49,7 @@ pipeline {
             steps{
                 sh 'echo 开始部署'
                 sh 'docker rm -f docker_java'
-                sh 'docker run -d -p8080:8080 --name docker_java docker_java:latest'
+                sh 'docker run -d -p8378:8080 --name docker_java docker_java:latest'
             }
         }
     }
