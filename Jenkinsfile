@@ -1,13 +1,13 @@
 pipeline {
     agent any
     environment {
-       WR = '${WORKSPACE}'
+       WR = "$WORKSPACE"
     }
     stages {
         stage('环境检查') {
             steps {
                 sh 'printenv'
-                sh 'echo $CC'
+                sh 'echo $WR'
                 sh 'git -v'
                 sh 'java -version'
                 sh 'pwd&&ls -la'
