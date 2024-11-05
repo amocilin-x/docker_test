@@ -7,6 +7,7 @@ pipeline {
         stage('环境检查') {
             steps {
                 sh 'echo $WR'
+                sh 'echo printenv'
             }
         }
         stage('编译'){
