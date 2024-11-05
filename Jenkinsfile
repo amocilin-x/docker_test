@@ -31,6 +31,7 @@ pipeline {
                 sh 'echo 开始测试'
                 sh 'cd ${WR} &&cd target  &&ls -al&& java -jar docker_test-0.0.1.jar'
                 sh 'curl http://localhost:8080'
+                sh 'jps -l'
             }
         }
         stage('生成镜像'){
