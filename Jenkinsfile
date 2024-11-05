@@ -15,8 +15,10 @@ pipeline {
         }
         stage('编译'){
             agent {
-                docker { image 'maven:3.6.1-jdk-8-alpine' }
-                args '-v mavenRepo:/opt/repo'
+                docker {
+                    image 'maven:3.6.1-jdk-8-alpine'
+                    args '-v mavenRepo:/opt/repo'
+                }
             }
             steps{
                 sh 'echo 开始'
