@@ -1,5 +1,5 @@
 def createVersion() {
-    return new Date().format('yyyy-MM-ddHH:mm:ss')
+    return new Date().format('yyyyMMddHHmmss')
 }
 pipeline {
     agent any
