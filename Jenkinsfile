@@ -40,12 +40,8 @@ pipeline {
         }
         stage('生成镜像'){
             steps{
-                def jenkinsTimeMillis = (new Date().getTime())
-                DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                String formatted = format.format(jenkinsTimeMillis);
-
                 sh 'echo 开始生成镜像'
-                sh 'docker build -t docker_java:formatted .'
+                sh 'docker build -t docker_java:${time} .'
             }
         }
 
